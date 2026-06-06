@@ -23,7 +23,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products' ,
                                  on_delete=models.CASCADE)
     name = models.CharField(max_length=100, db_index=True)
-    slug = models.SlugField(max_length=100, unique=100)
+    slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d' , blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -39,3 +39,17 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("main:product_detail", args=[self.id, self.slug]) 
+
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    author_name = models.CharField(max_length=100, verbose_name="Имя автора")
+    text = models.TextField(verbose_name="Текст отзыва")
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Дата")
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return f"Отзыв от {self.author_name} к {self.product.name}"

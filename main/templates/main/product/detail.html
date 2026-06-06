@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ product.name }}</h2>
+    <p><strong>Цена:</strong> {{ product.price }} руб.</p>
+    <p><strong>Описание:</strong> {{ product.description }}</p>
+    
+    <hr>
+    <h3>Отзывы покупателей:</h3>
+    <ul>
+    {% for review in reviews %}
+        <li><strong>{{ review.author_name }}</strong> ({{ review.created|date:"d.m.Y" }}): {{ review.text }}</li>
+    {% empty %}
+        <li>Отзывов пока нет, напиши хорошее только пж</li>
+    {% endfor %}
+    </ul>
+    
+    
+{% endblock %}

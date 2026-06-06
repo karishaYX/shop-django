@@ -1,13 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% block title %}</title>
+    <title>{% block title %}Мой Магазин{% endblock %}</title>
 </head>
 <body>
-    от бейс пошло
-    {% block content %}{% block content %}
+    <h1><a href="/">Все для счастья</a></h1>
+    <hr>
+    
+    {% block content %}
+    {% endblock %}
+    
 </body>
-</html> 
+</html>
